@@ -1,0 +1,10 @@
+#!/usr/bin/python
+numbs = [1,2,3,4]
+for x in numbs :
+	print(x**2)
+for i in range (3,11,2) :
+	print(i)
+var1 = "hello"
+dict1 = {1:"tom",2:"ali"}
+for key, value in dict1.items():
+	print (f"{key*10}:{value.upper()}")

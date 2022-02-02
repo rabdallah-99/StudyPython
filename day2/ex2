@@ -1,0 +1,6 @@
+#!/usr/bin/python
+var1 = int(input(" enter the starting number : "))
+
+while var1 <= 10 :
+  print(var1)
+  var1 +=1

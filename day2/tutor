@@ -1,0 +1,9 @@
+#!/usr/bin/python
+count = 0
+list1= []
+while count < 5 :
+	name = input ( "What is your name ?" )
+	print (f" {name}, is awesome!" )
+	list1.append(name)
+	count  +=1
+print(list1)
