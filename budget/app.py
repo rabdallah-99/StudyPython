@@ -18,21 +18,22 @@ while choice :
 	print(" 4) Display transactions \n")
 	print(" 5) Transfer between budgets \n")
 	print(" 6) Set spend limit \n")
-	print(" 7) Exit \n")
+	print(" 7) Display budget info \n")
+	print(" 8) Exit \n")
 	x=input("enter your choice : ")
-	if x == "7" :
+	if x == "8" :
 		choice = False
 	elif x == "1" :
 		print ("\u001b[33m")
-		category=input("please enter budget name")
-		balance=int(input("please enter the starting balance for the budget"))
-		limit=int(input("please enter the limit"))
+		category=input("please enter budget name: ")
+		balance=int(input("please enter the starting balance for the budget: "))
+		limit=int(input("please enter the limit: "))
 		budget=Budget(balance,limit,category)
 		list.append(budget)
 	elif x == "2" :
 		print ("\u001b[33m")
-		category=input("please enter the budget name")
-		amount=int(input("please enter the amount to withdraw"))
+		category=input("please enter the budget name: ")
+		amount=int(input("please enter the amount to withdraw: "))
 		flag = True
 		for budget in list :
 			if budget.category == category :
@@ -47,8 +48,8 @@ while choice :
 			
 	elif x == "3" :
 		print ("\u001b[33m")
-		category=input("please enter the budget name")
-		amount=int(input("please enter the amount to deposit"))
+		category=input("please enter the budget name: ")
+		amount=int(input("please enter the amount to deposit: "))
 		flag=True
 		for budget in list :
 			if budget.category == category :
@@ -63,7 +64,7 @@ while choice :
 
 	elif x == "4" :
 		print ("\u001b[33m")
-		category=input("please enter the budget name")
+		category=input("please enter the budget name: ")
 		flag = True
 		for budget in list :
 			if budget.category == category :
@@ -75,13 +76,23 @@ while choice :
 		print ("Transfer")
 	elif x == "6" :
 		print ("\u001b[33m")
-		category=input("please enter the budget name")
-		limit=int(input("please enter the new limit")
+		category=input("please enter the budget name: ")
+		limit=int(input("please enter the new limit: "))
 		flag = True
 		for budget in list :
 			if budget.category == category :
 				flag = False
 				budget.limit=limit
+		if flag :
+				print("budget not found")
+	elif x == "7" :
+		print ("\u001b[33m")
+		category=input("please enter the budget name: ")
+		flag = True
+		for budget in list :
+			if budget.category == category :
+				flag = False
+				print(budget)
 		if flag :
 				print("budget not found")
 	else :
