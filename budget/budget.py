@@ -5,29 +5,22 @@ class Budget :
 		self.balance=balance
 		self.limit=limit
 		self.category=category
-		file=open(category,"w")
-		today=date.today()
-		transaction=f"{today}:Create:{balance}:{balance}"
-		file.write(transaction)
-		file.write("\n")
-		file.close
+		self.transaction(balance,"Create")
 	def withdraw(self,amount):
 		self.balance -= amount
+		self.transaction(amount,"withdraw")
+		return amount
+	def transaction(self,amount,operation):
 		today=date.today()
 		file=open(self.category,"a")
-		transaction=f"{today}:withdraw:{amount}:{self.balance}"
+		transaction=f"{today}:{operation}:{amount}:{self.balance}"
 		file.write(transaction)
 		file.write("\n")
 		file.close
-		return amount
+		
 	def deposit(self,amount):
 		self.balance += amount
-		today=date.today()
-		file=open(self.category,"a")
-		transaction=f"{today}:deposit:{amount}:{self.balance}"
-		file.write(transaction)
-		file.write("\n")
-		file.close
+		self.transaction(amount,"deposit")
 		return amount
 	def __repr__(self):
 		return f" Budget : {self.category} with balance {self.balance} and limit {self.limit}"
