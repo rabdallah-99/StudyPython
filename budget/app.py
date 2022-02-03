@@ -73,7 +73,29 @@ while choice :
 		if flag :
 				print("budget not found")
 	elif x == "5" :
-		print ("Transfer")
+		print ("\u001b[33m")
+		category=input("please enter the budget to withdraw from: ")
+		name=input("please enter the budget to deposit into : ")
+		amount=int(input("please enter the amount to transfer: "))
+		flag=False
+		flag1=False
+		for budget in list :
+			if budget.category == category :
+				if budget.balance >= amount :
+					flag = True 
+					b1=budget
+				else :
+					print("\u001b[31m not enough money in budget")
+					continue
+			if budget.category == name :
+				if (budget.balance+ amount) < budget.limit :
+					flag1= True
+					b2=budget
+				else :
+					print("Limit exceeded transaction dropped")
+					continue
+		if flag and flag1 :
+				b2.transfer(b1,amount)
 	elif x == "6" :
 		print ("\u001b[33m")
 		category=input("please enter the budget name: ")
