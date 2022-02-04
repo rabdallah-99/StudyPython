@@ -7,8 +7,11 @@ class Budget :
 		self.category=category
 		self.transaction(balance,"Create")
 	def withdraw(self,amount):
-		self.balance -= amount
-		self.transaction(amount,"withdraw")
+		if self.balance >= amount:
+			self.balance -= amount
+			self.transaction(amount,"withdraw")
+		else :
+			amount=-1
 		return amount
 	def transaction(self,amount,operation):
 		today=date.today()
@@ -19,14 +22,21 @@ class Budget :
 		file.close
 		
 	def deposit(self,amount):
-		self.balance += amount
-		self.transaction(amount,"deposit")
+		if (self.balance+amount) < self.limit :
+			self.balance += amount
+			self.transaction(amount,"deposit")
+		else :
+			amount = -1
 		return amount
 	def __repr__(self):
 		return f" Budget : {self.category} with balance {self.balance} and limit {self.limit}"
 	def transfer(self,budget,amount):
-		budget.withdraw(amount)
-		self.deposit(amount)
+		if (self.balance+amount) < self.limit and budget.balance >= amount:
+			budget.withdraw(amount)
+			self.deposit(amount)
+		else :
+			amount = -1
+		return amount
 	def display(self):
 		file=open(self.category,"r")
 		var=file.readlines()
